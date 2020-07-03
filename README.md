@@ -2,6 +2,17 @@
 
 
 # Development Practices
+# Install both frontend and backend dependencies
+
+```
+cd client
+npm install
+```
+
+```
+cd server
+npm install
+```
 
 ## To run front end 
 ```
