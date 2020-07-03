@@ -2,7 +2,7 @@
 
 
 # Development Practices
-# Install both frontend and backend dependencies
+## Install both frontend and backend dependencies
 
 ```
 cd client
