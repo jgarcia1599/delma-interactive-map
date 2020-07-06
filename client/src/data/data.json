@@ -1,0 +1,20 @@
+[   
+    {
+        "id": 1,
+        "locationName": "Jetty",
+        "longitude": 24.48,
+        "latitude": 52.28
+    },
+    {
+        "id": 2,
+        "locationName": "Pier",
+        "longitude": 24.478,
+        "latitude": 52.276
+    },
+    {
+        "id": 3,
+        "locationName": "Boat Harbour",
+        "longitude": 24.482,
+        "latitude": 52.281
+    }
+]
