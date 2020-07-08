@@ -60,7 +60,6 @@ class App extends Component{
             <Switch>
             <Route path="/" exact>
               <MapClass></MapClass>
-              {/* <div> */}
                 <ul id="articleList">
                   {data.map(hero => (
                     <Link to={'/articles/' + hero.id}>
@@ -74,7 +73,6 @@ class App extends Component{
                     </Link>
                   ))} 
                 </ul>           
-              {/* </div> */}
 
             </Route>
               <Route path="/articles/:id" exact component={Page} />

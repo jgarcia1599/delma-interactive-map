@@ -5,6 +5,14 @@ import { NavLink } from "react-router-dom";
 import data from '../data/data.json';
 
 class Pages extends Component {
+  constructor(){
+    super();
+    this.state= {
+      // backend_greeting : "No greeting yet"
+      markerData: []
+    }
+  }
+  
   render() {
     const filteredData = data.filter(entry => entry.id == this.props.match.params.id)
     console.log(filteredData)  
