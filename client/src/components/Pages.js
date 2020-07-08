@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link, BrowserRouter as Router, Route } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 
-import data from '../data/data.json';
+import {data} from './MapClass';
 
 class Pages extends Component {
   constructor(){
@@ -21,6 +21,7 @@ class Pages extends Component {
             <h1>
                 {filteredData[0].locationName}
             </h1>
+            <p>{filteredData[0].description}</p>
             <Link to="/"><h1>Back To Map</h1></Link>
 
        </div>

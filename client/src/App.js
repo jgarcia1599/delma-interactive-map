@@ -11,7 +11,7 @@ import { Switch } from "react-router-dom";
 import Nav from "./components/Nav"
 import PageListItem from "./components/PageListItems";
 import Page from "./components/Pages";
-import MapClass from "./components/MapClass";
+import {MapClass} from "./components/MapClass";
 import PlaceHolder from "./images/delma-placeholder.jpeg"
 import ReactDOM from "react-dom";
 
@@ -61,7 +61,7 @@ class App extends Component{
             <Route path="/" exact>
               <MapClass></MapClass>
                 <ul id="articleList">
-                  {data.map(hero => (
+                  {this.state.markerData.map(hero => (
                     <Link to={'/articles/' + hero.id}>
                       <li className="articleListEntry">
                         <img src={PlaceHolder}/>
