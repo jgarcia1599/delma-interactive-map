@@ -5,13 +5,20 @@
 }
 
 #leafletMap {
-    height: 600px;
+    height: 100vh;
+    z-index: 1;
 }
 
 /* nav styles */
 nav {
+    position: absolute;
+    top: 0;
+    width: 100%;
     overflow: hidden;
-    background-color: #333;
+    /* background-color: #333; */
+    /* opacity: 0.2; */
+    font-family: 'Helvetica';
+    z-index: 2;
   }
   
   
@@ -20,28 +27,27 @@ nav {
     display: block;
     color: #f2f2f2;
     text-align: center;
-    padding: 14px 16px;
+    padding: 40px 7%;
     text-decoration: none;
     font-size: 17px;
-    margin: 30px;
-
+    opacity: 1;
   }
   
   nav a:hover {
-    background-color: #ddd;
-    color: black;
+    /* background-color: #ddd; */
+    color: rgb(107, 107, 107);
   }
   
   nav a.activeNav {
     float: left;
-    color: white;
+    /* color: white; */
   }
   
   nav .icon {
     display: none;
   }
   
-  @media screen and (max-width: 600px) {
+  /* @media screen and (max-width: 600px) {
     nav a:not(:first-child) {display: none;}
     nav a.icon {
       float: right;
@@ -50,7 +56,10 @@ nav {
   }
   
   @media screen and (max-width: 600px) {
-    nav.responsive {position: relative;}
+    nav.responsive {
+      position: relative;
+      color:black;
+    }
     nav.responsive .icon {
       position: absolute;
       right: 0;
@@ -61,7 +70,7 @@ nav {
       display: block;
       text-align: left;
     }
-  }
+  } */
 
 #articleList {
     margin: 50px;
@@ -73,7 +82,7 @@ nav {
 
 .articleListEntry {
     min-height: 200px;
-    padding: 20px;
+    margin: 40px 300px 40px 300px;
     display:grid;
     grid-template-columns:  1fr 3fr;
     border-top: 2px solid black; 
@@ -88,10 +97,76 @@ nav {
 .articleListEntry div{
     text-decoration: none;
     padding: 0px 0px 0px 10px;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Open Sans';
 }
 
 
 .articleListEntry a{
     text-decoration: none;
+}
+
+#mapContentLeft {
+  box-sizing: border-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 100%;
+  left: 0;
+  padding: 8em 7% 5em;
+  /* pointer-events: none; */
+  position: absolute;
+  top: 0;
+  width: 50%;
+  z-index: 10;
+  color: white;
+}
+
+#mapContentLeft h1 {
+  font-weight: 800;
+  font-size: 3em;
+}
+#mapContentLeft p {
+  font-weight: 300;
+  font-size: 1em;
+}
+
+#infoCircleBottomLeft {
+  display: none;
+  z-index: 4;
+}
+
+#infoCloseTopLeft {
+  display: none;
+}
+@media screen and (max-width: 550px) {
+  #mapContentLeft {
+    display:none;
+    width: 100%;
+    background-color: #666666be;
+  }
+
+  #mapContentLeft p{
+    font-size: 0.8em;
+  }
+  #infoCircleBottomLeft {
+    position: absolute;
+    bottom: 60px;
+    font-size: 50px;
+    left: 7%;
+    display: block;
+    color: white;
+  }
+  
+  #infoCloseTopLeft {
+    position: absolute;
+    top: 100px;
+    left: 7%;
+    font-size: 25px;
+    display: block;
+  }
+} 
+
+#hidden {
+  display: hidden !important;
 }

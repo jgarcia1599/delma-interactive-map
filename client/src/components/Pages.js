@@ -9,13 +9,14 @@ class Pages extends Component {
     super();
     this.state= {
       // backend_greeting : "No greeting yet"
+      loaded: false,
       markerData: []
     }
   }
   
   render() {
     const filteredData = data.filter(entry => entry.id == this.props.match.params.id)
-    console.log(filteredData)  
+    console.log(this.props.match.params.id)  
     return (
         <div>
             <h1>

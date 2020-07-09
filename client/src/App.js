@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
-import logo from './logo.svg';
 import './App.css';
-import data from './data/data.json';
 import { Map, TileLayer, Marker, Popup } from "react-leaflet";
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
@@ -9,7 +7,6 @@ import axios from "axios";
 import { Link, BrowserRouter as Router, Route } from "react-router-dom";
 import { Switch } from "react-router-dom";
 import Nav from "./components/Nav"
-import PageListItem from "./components/PageListItems";
 import Page from "./components/Pages";
 import {MapClass} from "./components/MapClass";
 import PlaceHolder from "./images/delma-placeholder.jpeg"
@@ -30,57 +27,74 @@ class App extends Component{
   constructor(){
     super();
     this.state= {
-      // backend_greeting : "No greeting yet"
-      markerData: []
+      markerData: [],
+      rawData:[],
+      data_received :false
+      }
     }
-  }
-  // in here we will make a simple GET request to our backend to update the state variable above
-  // componentDidMount = () =>{
-  //   axios.get("/hifrombackend").then( (response) => {
-  //     console.log(response.data);
-  //     this.setState({
-  //       backend_greeting:response.data
-  //     })
-  //   })
-  // }
-  componentDidMount() {
-    console.log('mount');
-    this.setState({
-      markerData: data
-    });    
-  }
+
+    componentWillMount() {
+      this.setState({isLoading:true})
+      console.log("hw!")
+      // this.setState({
+      //     markerData: data
+      // });  
+      axios.get("/delmadata").then( (response) => {
+              var clean_data = []
+              response.data.forEach((element,index) =>{
+                  var keys = Object.keys(element);
+                  clean_data.push({
+                      id:parseInt(element[keys[0]]),
+                      locationName:element[keys[1]],
+                      latitude:parseFloat(element[keys[3]]),
+                      longitude:parseFloat(element[keys[2]]),
+                      description:element[keys[4]],
+                  })
+
+              })
+              this.setState({
+                  rawData: clean_data,
+                  data_received:true
+              })
+      })
+    }
 
   render(){
-      const position = [24.482, 52.28];
-      const markerInfo = data;
-      return (
-        <div className="appWrapper">
-          <Router>
-            <Nav />
-            <Switch>
-            <Route path="/" exact>
-              <MapClass></MapClass>
-                <ul id="articleList">
-                  {this.state.markerData.map(hero => (
-                    <Link to={'/articles/' + hero.id}>
-                      <li className="articleListEntry">
-                        <img src={PlaceHolder}/>
-                        <div>
-                          <h1>{hero.locationName}</h1>
-                          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer suscipit, est sed vulputate tempus, mi tellus convallis risus, nec ultricies magna magna aliquam dui. Cras eget enim ex. In vulputate pharetra urna, et molestie magna. In vitae massa nisl. Nulla eget turpis vitae felis iaculis facilisis nec ut magna. Ut eget dui eu risus ornare vestibulum. Vivamus vitae sollicitudin leo. Sed fringilla ex at nisl efficitur, non pharetra ligula fermentum.</p>
-                        </div>
-                      </li>
-                    </Link>
-                  ))} 
-                </ul>           
+      if(this.state.data_received == false){
+          return <p>Loading ..... </p>
+      } 
 
-            </Route>
-              <Route path="/articles/:id" exact component={Page} />
-            </Switch>
-          </Router>
-        </div>
-      );
-    }
+      else {
+        const markerInfo = this.state.rawData;
+        return (
+          <div className="appWrapper">
+            <Router>
+              <Nav />
+              <Switch>
+              <Route path="/" exact>
+                <MapClass></MapClass>
+                  {/* <ul id="articleList">
+                    {markerInfo.map(hero => (
+                      <Link to={'/articles/' + hero.id}>
+                        <li className="articleListEntry">
+                          <img src={PlaceHolder}/>
+                          <div>
+                            <h1>{hero.locationName}</h1>
+                            <p>{hero.description}</p>
+                          </div>
+                        </li>
+                      </Link>
+                    ))} 
+                  </ul>            */}
+
+              </Route>
+                <Route path="/articles/:id" exact component={Page} />
+              </Switch>
+            </Router>
+          </div>
+        );
+      }
+  }
 }
 
 export default App;
