@@ -7,6 +7,8 @@ import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import '../App.css';
 import axios from "axios";
+import Nav from "./Nav";
+
 import { Link, BrowserRouter as Router, Route } from "react-router-dom";
 import ReactDOM from "react-dom";
 
@@ -31,10 +33,7 @@ class MapClass extends Component {
         this.collapseDetails = this.collapseDetails.bind(this);
         this.expandDetails = this.expandDetails.bind(this);
         this.updatePredicate = this.updatePredicate.bind(this);
-
     }
-
-    
 
     componentWillMount() {
         this.setState({isLoading:true})
@@ -111,12 +110,15 @@ class MapClass extends Component {
 
         return (
           <div>
+            <Nav isHome={true}/>  
             <div id="mapContentLeft">
             <FontAwesomeIcon icon={faTimes} onClick={this.collapseDetails} id="infoCloseTopLeft"/>
-
                 <h1>Delma Island</h1>
                 <p>Dalma (IATA: ZDY) is an Emirati island located in the Persian Gulf approximately 42 kilometres (26 mi) off the coast of Abu Dhabi and 116 kilometres (72 mi) from Doha. The Abu Dhabi Islands Archaeological Survey ADIAS carried out an initial archaeological survey of Dalma island in 1992. A total of more than 20 archaeological sites were identified on the island, ranging in time from the Neolithic (Late Stone Age). The population consists of around 4,811 inhabitants, most of whom are Qatari who have been granted United Arab Emirates (UAE) nationality.</p>
-                <div id="mapContentLegend"></div>
+                <br></br><br></br><br></br><hr></hr>
+                <div id="mapContentLegend">
+                    <h6>LEGEND</h6>
+                </div>
             </div>
             <FontAwesomeIcon icon={faInfoCircle} onClick={this.expandDetails} id="infoCircleBottomLeft"/>
             <Map id="leafletMap" center={position} zoom={13} zoomControl={false} dragging={true}>
@@ -128,8 +130,8 @@ class MapClass extends Component {
                     markerInfo.map((datapoint) =>
                     <Marker position={[datapoint.longitude, datapoint.latitude]} key={datapoint.id}>
                     <Popup>
-                        {datapoint.locationName}<br/>
-                        {datapoint.description}<br/>
+                        <h1>{datapoint.locationName}</h1>
+                        <p>{datapoint.description}</p><br/>
                         <Link to={'/articles/' + datapoint.id}>Read More</Link>
                     </Popup>
                     </Marker>

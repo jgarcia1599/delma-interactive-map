@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import { Link, BrowserRouter as Router, Route } from "react-router-dom";
-import { NavLink } from "react-router-dom";
-
+import Nav from "./Nav";
+import BeachImage from "../images/beach-placeholder.jpg"
 import {data} from './MapClass';
+import { faArrowCircleLeft } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 class Pages extends Component {
   constructor(){
@@ -19,12 +21,20 @@ class Pages extends Component {
     console.log(this.props.match.params.id)  
     return (
         <div>
-            <h1>
-                {filteredData[0].locationName}
-            </h1>
-            <p>{filteredData[0].description}</p>
-            <Link to="/"><h1>Back To Map</h1></Link>
-
+            <Nav isHome={false}/>
+            <div id="verticalLine"></div>
+            <div id="pageContentWrapper">
+              <h1>
+                  {filteredData[0].locationName}
+              </h1>
+              <img src={BeachImage} alt="Place Holder Beach" />
+              <p>
+                {filteredData[0].description}
+              </p>
+              <Link to="/" >
+                <FontAwesomeIcon icon={faArrowCircleLeft} id="arrowLeftIcon"/>
+              </Link>
+            </div>
        </div>
 
     )

@@ -69,8 +69,7 @@ class App extends Component{
         return (
           <div className="appWrapper">
             <Router>
-              <Nav />
-              <Switch>
+              {/* <Switch> */}
               <Route path="/" exact>
                 <MapClass></MapClass>
                   {/* <ul id="articleList">
@@ -89,7 +88,7 @@ class App extends Component{
 
               </Route>
                 <Route path="/articles/:id" exact component={Page} />
-              </Switch>
+              {/* </Switch> */}
             </Router>
           </div>
         );

@@ -19,7 +19,7 @@ class Nav extends Component {
   }
   render() {
     return (
-      <nav id="myTopnav" className="topnav">
+      <nav id="myTopnav" className={this.props.isHome ? 'transparentNav' : 'opaqueNav'}>
         <Link to="/" className="activeNav">Map</Link>
         <Link to="/stories">Stories</Link>
         <Link to="/about">About</Link>

@@ -11,23 +11,38 @@
 
 /* nav styles */
 nav {
-    position: absolute;
-    top: 0;
     width: 100%;
     overflow: hidden;
-    /* background-color: #333; */
-    /* opacity: 0.2; */
     font-family: 'Helvetica';
     z-index: 2;
+  }
+
+  .transparentNav {
+    position: absolute;
+    top:0;
+    color: #f2f2f2;
+  }
+
+  .transparentNav a{
+    color: #f2f2f2;
+  }
+  .opaqueNav {
+    position: relative;
+    
+  }
+
+  .opaqueNav a {
+    color: #1a1a1a;
+
   }
   
   
   nav a {
+    font-family: "Futura";
     float: right;
     display: block;
-    color: #f2f2f2;
     text-align: center;
-    padding: 40px 7%;
+    margin: 40px 7%;
     text-decoration: none;
     font-size: 17px;
     opacity: 1;
@@ -123,13 +138,20 @@ nav {
 }
 
 #mapContentLeft h1 {
-  font-weight: 800;
+  font-weight:700;
   font-size: 3em;
+  font-family: "Futura";
 }
 #mapContentLeft p {
   font-weight: 300;
   font-size: 1em;
+  font-family: "Open Sans";
 }
+#mapContentLeft h6 {
+  font-weight: 500;
+  font-size: 1.1em;
+}
+
 
 #infoCircleBottomLeft {
   display: none;
@@ -139,7 +161,94 @@ nav {
 #infoCloseTopLeft {
   display: none;
 }
+
+#hidden {
+  display: hidden !important;
+}
+
+.leaflet-popup-content-wrapper {
+  /* width: 50px; */
+  background-color: rgba(0, 0, 0, 0.8) !important;
+  color: white !important;
+  border-radius: 0px !important;
+  box-shadow : none !important;
+}
+
+.leaflet-popup-content-wrapper h1 {
+  text-align: center;
+  font-weight: 800;
+}
+
+.leaflet-popup-tip {
+  background-color: rgba(0, 0, 0, 0.8) !important;
+
+}
+
+#verticalLine {
+  height: 100vh;
+  width: 90%;
+  position: absolute;
+  margin: auto 5% auto 5%;
+  border-right: 1px solid rgba(139, 139, 139, 0.467);
+  border-left: 1px solid rgba(139, 139, 139, 0.447);
+}
+
+#pageContentWrapper {
+  margin: auto 20% auto 20%;
+}
+
+#pageContentWrapper h1 {
+  font-size: 40px;
+  font-weight: 400;
+}
+
+#pageContentWrapper p {
+  font-family: "Open Sans";
+}
+
+#pageContentWrapper img {
+  width: 70%;
+  height: auto;
+}
+
+#arrowLeftIcon {
+  position: absolute;
+  top: 16%;
+  font-size: 40px;
+  left: 9%;
+  color: black;
+}
+
+
+/*media queries */
+@media screen and (max-width: 768px) {
+  #verticalLine {
+    border-right: 0;
+    border-left: 0;
+
+  }
+
+  #pageContentWrapper img {
+    width: 80%;
+    height: auto;
+  }
+
+  #arrowLeftIcon {
+    display:none;
+  }
+
+  #pageContentWrapper {
+    margin: auto 10% auto 10%;
+  }
+}
 @media screen and (max-width: 550px) {
+  #pageContentWrapper img {
+    width: 100%;
+    height: auto;
+  }
+  #pageContentWrapper {
+    margin: auto 5% auto 5%;
+  }
   #mapContentLeft {
     display:none;
     width: 100%;
@@ -165,8 +274,18 @@ nav {
     font-size: 25px;
     display: block;
   }
-} 
 
-#hidden {
-  display: hidden !important;
-}
+  nav a.activeNav {
+    float: none;
+  }
+
+  nav a {
+    float:none;
+    margin: 15px;
+  }
+  nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+} 
