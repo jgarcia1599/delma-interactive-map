@@ -7,7 +7,9 @@ import axios from "axios";
 import { Link, BrowserRouter as Router, Route } from "react-router-dom";
 import { Switch } from "react-router-dom";
 import Nav from "./components/Nav"
-import Page from "./components/Pages";
+import Page from "./components/Page";
+import PageListPage from "./components/PageListItems";
+
 import {MapClass} from "./components/MapClass";
 import PlaceHolder from "./images/delma-placeholder.jpeg"
 import ReactDOM from "react-dom";
@@ -69,26 +71,13 @@ class App extends Component{
         return (
           <div className="appWrapper">
             <Router>
-              {/* <Switch> */}
               <Route path="/" exact>
                 <MapClass></MapClass>
-                  {/* <ul id="articleList">
-                    {markerInfo.map(hero => (
-                      <Link to={'/articles/' + hero.id}>
-                        <li className="articleListEntry">
-                          <img src={PlaceHolder}/>
-                          <div>
-                            <h1>{hero.locationName}</h1>
-                            <p>{hero.description}</p>
-                          </div>
-                        </li>
-                      </Link>
-                    ))} 
-                  </ul>            */}
-
               </Route>
-                <Route path="/articles/:id" exact component={Page} />
-              {/* </Switch> */}
+                <Route exact path="/stories">
+                  <PageListPage data={this.state.rawData}></PageListPage>
+                </Route>
+                <Route exact path="/articles/:id" exact component={Page} />
             </Router>
           </div>
         );

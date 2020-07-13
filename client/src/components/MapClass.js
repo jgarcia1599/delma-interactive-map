@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Map, TileLayer, Marker, Popup } from "react-leaflet";
+import { Map, TileLayer, Marker, Popup, ZoomControl } from "react-leaflet";
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
@@ -8,19 +8,24 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import '../App.css';
 import axios from "axios";
 import Nav from "./Nav";
-
+import { divIcon } from "leaflet";
 import { Link, BrowserRouter as Router, Route } from "react-router-dom";
 import ReactDOM from "react-dom";
+import BeachImage from "../images/beach-placeholder.jpg"
 
 var data = [];
 
 delete L.Icon.Default.prototype._getIconUrl;
 
 L.Icon.Default.mergeOptions({
-    iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
-    iconUrl: require('leaflet/dist/images/marker-icon.png'),
+    // iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
+        iconRetinaUrl: require('../images/beach-placeholder.jpg'),
+
+    iconUrl: require('../images/beach-placeholder.jpg'),
     shadowUrl: require('leaflet/dist/images/marker-shadow.png')
 });
+
+var myIcon = L.divIcon({className: 'leaflet-div-red'});
 
 class MapClass extends Component {
     constructor(props) {
@@ -33,6 +38,8 @@ class MapClass extends Component {
         this.collapseDetails = this.collapseDetails.bind(this);
         this.expandDetails = this.expandDetails.bind(this);
         this.updatePredicate = this.updatePredicate.bind(this);
+        this.panMarker = this.panMarker.bind(this);
+
     }
 
     componentWillMount() {
@@ -97,6 +104,10 @@ class MapClass extends Component {
 
         console.log(contentLeft)
     }
+
+    panMarker(object) {
+        console.log("ho!");
+    }
     
     
   render() {
@@ -115,9 +126,17 @@ class MapClass extends Component {
             <FontAwesomeIcon icon={faTimes} onClick={this.collapseDetails} id="infoCloseTopLeft"/>
                 <h1>Delma Island</h1>
                 <p>Dalma (IATA: ZDY) is an Emirati island located in the Persian Gulf approximately 42 kilometres (26 mi) off the coast of Abu Dhabi and 116 kilometres (72 mi) from Doha. The Abu Dhabi Islands Archaeological Survey ADIAS carried out an initial archaeological survey of Dalma island in 1992. A total of more than 20 archaeological sites were identified on the island, ranging in time from the Neolithic (Late Stone Age). The population consists of around 4,811 inhabitants, most of whom are Qatari who have been granted United Arab Emirates (UAE) nationality.</p>
-                <br></br><br></br><br></br><hr></hr>
+                <br></br><hr></hr>
                 <div id="mapContentLegend">
                     <h6>LEGEND</h6>
+                    <div class="flex-row-two-columns-legend">
+                        <div className="leaflet-div-red"></div>
+                        <div>Media Available</div>
+                    </div>
+                    <div class="flex-row-two-columns-legend">
+                        <div className="leaflet-div-blue"></div>
+                        <div>Media Available</div>
+                    </div>
                 </div>
             </div>
             <FontAwesomeIcon icon={faInfoCircle} onClick={this.expandDetails} id="infoCircleBottomLeft"/>
@@ -128,7 +147,7 @@ class MapClass extends Component {
                 />
                 {
                     markerInfo.map((datapoint) =>
-                    <Marker position={[datapoint.longitude, datapoint.latitude]} key={datapoint.id}>
+                    <Marker position={[datapoint.longitude, datapoint.latitude]} key={datapoint.id} icon={myIcon} onClick={this.panMarker(this)}>
                     <Popup>
                         <h1>{datapoint.locationName}</h1>
                         <p>{datapoint.description}</p><br/>
@@ -137,6 +156,8 @@ class MapClass extends Component {
                     </Marker>
                     )
                 };
+                <ZoomControl position="bottomright" />
+
             </Map>
             </div>
         )

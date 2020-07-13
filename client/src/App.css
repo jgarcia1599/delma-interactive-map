@@ -128,18 +128,20 @@ nav {
   flex-direction: column;
   height: 100%;
   left: 0;
-  padding: 8em 7% 5em;
+  padding: 6em 7% 5em;
   /* pointer-events: none; */
   position: absolute;
   top: 0;
   width: 50%;
   z-index: 10;
   color: white;
+  background: linear-gradient(to right, rgba(96, 163, 218, 0.2), transparent);
 }
 
 #mapContentLeft h1 {
   font-weight:700;
   font-size: 3em;
+  
   font-family: "Futura";
 }
 #mapContentLeft p {
@@ -189,8 +191,8 @@ nav {
   width: 90%;
   position: absolute;
   margin: auto 5% auto 5%;
-  border-right: 1px solid rgba(139, 139, 139, 0.467);
-  border-left: 1px solid rgba(139, 139, 139, 0.447);
+  border-right: 0.4px solid rgba(139, 139, 139, 0.467);
+  border-left: 0.4px solid rgba(139, 139, 139, 0.447);
 }
 
 #pageContentWrapper {
@@ -220,12 +222,202 @@ nav {
 }
 
 
+/* marker styles */
+.leaflet-div-red
+{
+  background:red;
+  border:5px solid rgba(255,255,255,0.5);
+  color:blue;
+  font-weight:bold;
+  text-align:center;
+  border-radius:50%;
+  line-height:30px;
+  width: 12px;
+  height: 12px;
+  margin-right: 14%;
+}
+
+.leaflet-div-blue
+{
+  background:rgb(0, 4, 255);
+  border:5px solid rgba(255,255,255,0.5);
+  color:blue;
+  font-weight:bold;
+  text-align:center;
+  border-radius:50%;
+  line-height:30px;
+  width: 12px;
+  height: 12px;
+  margin-right: 14%;
+}
+/* use this to adjust marker position, will vary depending on size of marker. */
+.leaflet-marker-icon {
+  margin-left: -11px !important;
+  margin-top: -3px !important;
+
+}
+
+#mapContentLegend h6 {
+  margin-bottom: 15px;
+}
+.flex-row-two-columns-legend {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 15px;
+}
+
+/* grid for articles page, search bar, filters, cards. */
+#articlesDivCenterGrid {
+  display: grid;
+  display: -moz-grid;
+  width: 90%;
+  margin: auto 5% auto 5%;
+  grid-template-columns: 20% 80%;
+
+}
+
+#articlesDivCenterGrid #articleCardsWrapper {
+  display: grid;
+  display: -moz-grid;
+  margin: auto 3% auto 3%;
+  grid-template-columns: 50% 50%;
+  grid-gap: 1rem;
+
+}
+
+#articlesDivCenterGrid #articleCardsWrapper .articleCard{
+  /* padding: 1rem; */
+  text-align: center;
+  border-radius: 10px;
+  background-color: rgb(250, 250, 250);
+  border: 0.5px solid rgba(153, 153, 153, 0.185); 
+  box-shadow: 5px 5px #8888880c;
+  height: 32rem
+}
+
+#articlesDivCenterGrid #articleCardsWrapper .articleCard img{
+  width: 50%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+#articleCardsWrapper input {
+  padding: 6px;
+  margin-top: 8px;
+  font-size: 17px;
+  border: none;
+}
+
+#articleCardsWrapper button {
+  float: right;
+  padding: 6px;
+  margin-top: 8px;
+  margin-right: 16px;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+}
+#articlesDivCenterGrid #articleCardsWrapper .articleCard h1{
+  font-family: "Open Sans";
+  font-weight: 800;
+  color: black;
+  text-decoration: none;
+  margin-bottom: 10px;
+  font-size: 22px;
+}
+
+#articlesDivCenterGrid #articleCardsWrapper .articleCard p{
+  font-family: "Open Sans";
+  font-weight: 500;
+  font-size: 16px;
+  margin: auto 7% auto 7%;
+  color: black;
+  text-decoration: none;
+}
+
+.dropdownFilter {
+  display: flex;
+  flex-direction: column;
+}
+
+
+a {
+  color: black;
+  text-decoration: none;
+}
+#filterVerticalBarArticles {
+  display:flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+#searchBarContainer {
+  margin: 2% 6%;
+  width: 50%;
+    float: right;
+}
+
+#searchBarContainer form {
+  width: 100%;
+  overflow: hidden;
+}
+#searchBarContainer input {
+  width: 100%;
+}
+#searchBarContainer span {
+  display: block;
+  overflow: hidden;
+}
+#searchBarContainer button {
+  float: right;
+  margin-right:0;
+  margin-top: 2px;
+}
+
+.dropdownFilter h2 {
+  margin: 5px 0px;
+  text-align: right;
+}
+#filterVerticalBarArticles button {
+  display: none;
+}
+
+#closeModalFilter {
+  display: none;
+}
+
+@media screen and (max-width: 1200px) {
+  #articlesDivCenterGrid #articleCardsWrapper .articleCard p{
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  #mapContentLeft {
+    width: 70%;
+  }
+
+}
+
+
 /*media queries */
 @media screen and (max-width: 768px) {
+  #articlesDivCenterGrid #articleCardsWrapper .articleCard p{
+    font-size: 15px;
+  }
+  #articlesDivCenterGrid #articleCardsWrapper {
+    display: grid;
+    display: -moz-grid;
+    margin: auto 5% auto 5%;
+    grid-template-columns: none;
+    grid-gap: 1rem;
+  
+  }  #mapContentLeft {
+    width: 85%;
+  }
   #verticalLine {
     border-right: 0;
     border-left: 0;
-
   }
 
   #pageContentWrapper img {
@@ -242,6 +434,44 @@ nav {
   }
 }
 @media screen and (max-width: 550px) {
+
+  .dropdownFilter label:hover {
+    /* background-color: red; */
+
+  }
+  #closeModalFilter {
+    display: block;
+  }
+  #filterVerticalBarArticles button {
+    display: block;
+    margin: 0 auto;
+    border-radius: 15px;
+    width: 200px;
+    height: 50px;
+  }
+
+  #searchBarContainer {
+    margin: 2% 5%;
+    width: 90%;
+    text-align: center;
+  }
+
+  .dropdownFilter {
+    display:none;
+    /* display:flex;
+    flex-direction: column;
+    align-self: flex-start; */
+  }
+
+  #articlesDivCenterGrid{
+    font-size: 14px;
+    grid-template-columns: none;
+  }
+  #filterVerticalBarArticles {
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 2% 5%;
+  }
   #pageContentWrapper img {
     width: 100%;
     height: auto;
@@ -288,4 +518,38 @@ nav {
     flex-direction: row;
     justify-content: center;
   }
+
+  /* #filterVerticalBarArticles:hover .dropdownFilter{
+    display:flex;
+    flex-direction: column;
+    align-self: flex-start;
+    } */
+    /*position filter div in middle of screen onclick */
+
 } 
+.absoluteMiddle {
+  display: block !important;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -25%;
+  background-color: gainsboro;
+  width: 45%;
+  padding: 15px;
+  border-radius: 30px;
+}
+
+.absoluteMiddle h2 {
+  text-align: center;
+}
+
+#dimOverlay {
+  display: none;
+  background-color: rgba(0,0,0,0.5);
+  position:fixed;
+  left:0;
+  top: 0;
+  width:100%;
+  height:100%;
+}
