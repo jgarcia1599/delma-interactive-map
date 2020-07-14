@@ -1,55 +1,57 @@
 import React, { Component } from 'react'
-import { Map, TileLayer, Marker, Popup } from "react-leaflet";
+import { Map, TileLayer, Marker, Popup, ZoomControl } from "react-leaflet";
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
-// import data from '../data/data.json';
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import '../App.css';
 import axios from "axios";
+import Nav from "./Nav";
+import { divIcon } from "leaflet";
 import { Link, BrowserRouter as Router, Route } from "react-router-dom";
+import ReactDOM from "react-dom";
+import BeachImage from "../images/beach-placeholder.jpg"
 
 var data = [];
 
 delete L.Icon.Default.prototype._getIconUrl;
 
 L.Icon.Default.mergeOptions({
-    iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
-    iconUrl: require('leaflet/dist/images/marker-icon.png'),
+    // iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
+        iconRetinaUrl: require('../images/beach-placeholder.jpg'),
+
+    iconUrl: require('../images/beach-placeholder.jpg'),
     shadowUrl: require('leaflet/dist/images/marker-shadow.png')
 });
 
+var myIcon = L.divIcon({className: 'leaflet-div-red'});
+
 class MapClass extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state= {
-            // backend_greeting : "No greeting yet"
             markerData: [],
             rawData:[],
             data_received :false
         }
+        this.collapseDetails = this.collapseDetails.bind(this);
+        this.expandDetails = this.expandDetails.bind(this);
+        this.updatePredicate = this.updatePredicate.bind(this);
+        this.panMarker = this.panMarker.bind(this);
+
     }
-    
-        // in here we will make a simple GET request to our backend to update the state variable above
-        // componentDidMount = () =>{
-        //   axios.get("/hifrombackend").then( (response) => {
-        //     console.log(response.data);
-        //     this.setState({
-        //       backend_greeting:response.data
-        //     })
-        //   })
-        // }
+
     componentWillMount() {
         this.setState({isLoading:true})
-        console.log("hw!")
+        this.updatePredicate();
+        window.addEventListener("resize", this.updatePredicate);
+
+        // console.log("hw!")
         this.setState({
             markerData: data
         });  
         axios.get("/delmadata").then( (response) => {
-                // for(var i = 0;i<response.data.length;i++){
-                //     console.log(response.data[i]);
-                //     var location_entry = {
-                        
-                //     }
-                // }
                 var clean_data = []
                 response.data.forEach((element,index) =>{
                     var keys = Object.keys(element);
@@ -65,48 +67,97 @@ class MapClass extends Component {
                 this.setState({
                     rawData: clean_data,
                     data_received:true
-
                 })
         })
+    }
 
+    componentWillUnmount() {
+        window.removeEventListener("resize", this.updatePredicate);
+      }
+
+    updatePredicate() {
+        if (window.innerWidth > 550 && this.state.data_received ==true) {
+            var contentLeft = document.getElementById("mapContentLeft");
+            var infoCircle = document.getElementById("infoCircleBottomLeft");
+            infoCircle.style.display = "none";
+
+            contentLeft.style.display = "flex";
+        }
+    }
+
+    
+
+    collapseDetails() {
+        var contentLeft = document.getElementById("mapContentLeft");
+        var infoCircle = document.getElementById("infoCircleBottomLeft");
+
+        contentLeft.style.display = "none";
+        infoCircle.style.display = "block";
 
     }
+
+    expandDetails() {
+        var contentLeft = document.getElementById("mapContentLeft");
+        var infoCircle = document.getElementById("infoCircleBottomLeft");
+        contentLeft.style.display = "flex";
+        infoCircle.style.display = "none";
+
+        console.log(contentLeft)
+    }
+
+    panMarker(object) {
+        console.log("ho!");
+    }
+    
     
   render() {
     if(this.state.data_received == false){
         return <p>Loading ..... </p>
     }
     else{
-        console.log("RAAAAW")
-        console.log(this.state.rawData);
-        console.log("MARKER");
-        console.log(this.state.markerData);
-
-        // this.setState({
-        //     markerData:this.state.rawData
-        // })
         const markerInfo = this.state.rawData;
         data = this.state.rawData;
         const position = [24.482, 52.28];
-    
+
         return (
           <div>
-            <Map id="leafletMap" center={position} zoom={13}>
-                <TileLayer
-                    attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
-                    url="https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png"
+            <Nav isHome={true}/>  
+            <div id="mapContentLeft">
+            <FontAwesomeIcon icon={faTimes} onClick={this.collapseDetails} id="infoCloseTopLeft"/>
+                <h1>Delma Island</h1>
+                <p>Dalma (IATA: ZDY) is an Emirati island located in the Persian Gulf approximately 42 kilometres (26 mi) off the coast of Abu Dhabi and 116 kilometres (72 mi) from Doha. The Abu Dhabi Islands Archaeological Survey ADIAS carried out an initial archaeological survey of Dalma island in 1992. A total of more than 20 archaeological sites were identified on the island, ranging in time from the Neolithic (Late Stone Age). The population consists of around 4,811 inhabitants, most of whom are Qatari who have been granted United Arab Emirates (UAE) nationality.</p>
+                <br></br><hr></hr>
+                <div id="mapContentLegend">
+                    <h6>LEGEND</h6>
+                    <div class="flex-row-two-columns-legend">
+                        <div className="leaflet-div-red"></div>
+                        <div>Media Available</div>
+                    </div>
+                    <div class="flex-row-two-columns-legend">
+                        <div className="leaflet-div-blue"></div>
+                        <div>Media Available</div>
+                    </div>
+                </div>
+            </div>
+            <FontAwesomeIcon icon={faInfoCircle} onClick={this.expandDetails} id="infoCircleBottomLeft"/>
+            <Map id="leafletMap" center={position} zoom={13} zoomControl={false} dragging={true}>
+            <TileLayer attribution="attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community" 
+                url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}" 
+                minZoom={12}
                 />
                 {
                     markerInfo.map((datapoint) =>
-                    <Marker position={[datapoint.longitude, datapoint.latitude]} key={datapoint.id}>
+                    <Marker position={[datapoint.longitude, datapoint.latitude]} key={datapoint.id} icon={myIcon} onClick={this.panMarker(this)}>
                     <Popup>
-                        {datapoint.locationName}<br/>
-                        {datapoint.description}<br/>
+                        <h1>{datapoint.locationName}</h1>
+                        <p>{datapoint.description}</p><br/>
                         <Link to={'/articles/' + datapoint.id}>Read More</Link>
                     </Popup>
                     </Marker>
                     )
                 };
+                <ZoomControl position="bottomright" />
+
             </Map>
             </div>
         )
@@ -116,6 +167,3 @@ class MapClass extends Component {
 }
 
 export {MapClass,data}
-// export data;
-// }
-// export default MapClass
