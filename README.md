@@ -35,3 +35,11 @@ cd server
 npm run dev
 
 ```
+
+## To run production build
+
+```
+npm run frontend-build
+npm start
+
+```
