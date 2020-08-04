@@ -2,18 +2,20 @@ const csvToJson = require('csvtojson');
 const express = require('express')
 const app = express()
 const port = 5000
+const path = require('path');
 
 //path to csv file we want to make into json
 const path_to_csv = 'data/delma.csv'
 
-app.get('/', (req, res) => res.send('Hello World!'))
+// using production build of main react app
+app.use(express.static(path.join(__dirname, '../client/build')));
 
-app.get('/hifrombackend', (req, res) =>{
-    results='hello everybody !'
-    res.send(JSON.stringify(results));
-  }); 
 
-app.get('/delmadata',(req,res) =>{
+app.get('/', (req, res) =>{
+  res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+});
+
+app.get('/api/delmadata',(req,res) =>{
   csvToJson().fromFile(path_to_csv)
   .then((jsonObj)=>{
     res.send(jsonObj);

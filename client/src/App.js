@@ -41,7 +41,7 @@ class App extends Component{
       // this.setState({
       //     markerData: data
       // });  
-      axios.get("/delmadata").then( (response) => {
+      axios.get("/api/delmadata").then( (response) => {
               var clean_data = []
               response.data.forEach((element,index) =>{
                   var keys = Object.keys(element);
