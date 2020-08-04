@@ -38,7 +38,7 @@ nav {
   
   
   nav a {
-    font-family: "Futura";
+    font-family: "Open Sans";
     float: right;
     display: block;
     text-align: center;
@@ -363,6 +363,13 @@ a {
 }
 #searchBarContainer input {
   width: 100%;
+  border: 1px solid #000000;
+  border-right: none;
+  padding: 9px;
+  height: 20px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: #000000;
 }
 #searchBarContainer span {
   display: block;
@@ -372,6 +379,15 @@ a {
   float: right;
   margin-right:0;
   margin-top: 2px;
+  width: 90px;
+  height: 36px;
+  border: 1px solid #000000;
+  background: #000000;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
 }
 
 .dropdownFilter h2 {
