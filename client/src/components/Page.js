@@ -5,6 +5,7 @@ import BeachImage from "../images/beach-placeholder.jpg"
 import {data} from './MapClass';
 import { faArrowCircleLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import SampleSound from "../sound/applause.mp3"
 
 class Pages extends Component {
   constructor(){
@@ -35,6 +36,11 @@ class Pages extends Component {
                 <FontAwesomeIcon icon={faArrowCircleLeft} id="arrowLeftIcon"/>
               </Link>
             </div>
+            <audio controls
+                      src={SampleSound}>
+                          Your browser does not support the
+                          <code>audio</code> element.
+            </audio>
        </div>
 
     )
