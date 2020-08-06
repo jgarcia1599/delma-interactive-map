@@ -5,39 +5,104 @@ import BeachImage from "../images/beach-placeholder.jpg"
 import {data} from './MapClass';
 import { faArrowCircleLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import axios from "axios";
 
 class Pages extends Component {
   constructor(){
     super();
     this.state= {
-      // backend_greeting : "No greeting yet"
-      loaded: false,
-      markerData: []
+      markerData: [],
+      rawData:[],
+      data_received :false
+      }
     }
-  }
-  
-  render() {
-    const filteredData = data.filter(entry => entry.id == this.props.match.params.id)
-    console.log(this.props.match.params.id)  
-    return (
-        <div>
-            <Nav isHome={false}/>
-            <div id="verticalLine"></div>
-            <div id="pageContentWrapper">
-              <h1>
-                  {filteredData[0].locationName}
-              </h1>
-              <img src={BeachImage} alt="Place Holder Beach" />
-              <p>
-                {filteredData[0].description}
-              </p>
-              <Link to="/" >
-                <FontAwesomeIcon icon={faArrowCircleLeft} id="arrowLeftIcon"/>
-              </Link>
-            </div>
-       </div>
 
-    )
+    componentWillMount() {
+      this.setState({isLoading:true})
+      console.log("hw!")
+      axios.get("/api/delmadata").then( (response) => {
+              var clean_data = []
+              response.data.forEach((element,index) =>{
+                  var keys = Object.keys(element);
+                  clean_data.push({
+                      id:parseInt(element[keys[0]]),
+                      locationName:element[keys[1]],
+                      latitude:parseFloat(element[keys[3]]),
+                      longitude:parseFloat(element[keys[2]]),
+                      description:element[keys[4]],
+                      topics:element[keys[5]].split(","),
+                      subjectTags:element[keys[6]].split(","),
+                      compiledTags:element[keys[7]].split(","),
+                      audioPaths:element[keys[9]].split(","),
+                      imagePaths:element[keys[10]].split(","),
+                      transcriptText:element[keys[13]]
+                  })
+
+              })
+              this.setState({
+                  rawData: clean_data,
+                  data_received:true
+              })
+      })
+    }
+
+  render() {
+
+    if(this.state.data_received == false){
+      return <p>Loading ..... </p>
+    } 
+    else {
+      const filteredData = this.state.rawData.filter(entry => entry.id == this.props.match.params.id)
+
+      // var transcript =                     
+      var transcript = filteredData[0].transcriptText;
+      return (
+          <div>
+              <Nav isHome={false}/>
+              <div id="verticalLine"></div>
+              <div id="pageContentWrapper">
+                <h1>
+                    {filteredData[0].locationName}
+                </h1>
+                {filteredData[0].imagePaths.length > 1
+                  ? <img src={require('../images/' + filteredData[0].imagePaths[0])} alt="Place Holder Beach" className="bigImagePage"/> 
+                  : <img src={BeachImage} alt="Place Holder Beach" className="bigImagePage"/>
+                }              
+                <p>
+                  {filteredData[0].description}
+                </p>
+                {(function() {
+                  if (filteredData[0].imagePaths.length == 2) {
+                    return <div className="one-image-row"><img src={require('../images/' + filteredData[0].imagePaths[1])} alt="Place Holder Beach" /></div>;
+                  } else if (filteredData[0].imagePaths.length == 3) {
+                    return <div className="two-image-row"><img src={require('../images/' + filteredData[0].imagePaths[1])} alt="Place Holder Beach" /><img src={require('../images/' + filteredData[0].imagePaths[2])} alt="Place Holder Beach" /></div>;
+                  }
+                })()}              
+                {/* {
+                  filteredData[0].imagePaths.length > 1
+                  ?<img src={require('../images/' + filteredData[0].imagePaths[1])} alt="Place Holder Beach" />
+                  :<></>
+                }
+                {
+                  filteredData[0].imagePaths.length > 2
+                  ?<img src={require('../images/' + filteredData[0].imagePaths[2])} alt="Place Holder Beach" />
+                  :<></>
+                } */}
+                {/* <Link to="/" >
+                  <FontAwesomeIcon icon={faArrowCircleLeft} id="arrowLeftIcon"/>
+                </Link> */}
+                  {filteredData[0].imagePaths.length > 1
+                    ? <audio controls className="audio-custom"> <source src={require('../sound/' + filteredData[0].audioPaths[0])} type="audio/mp4"></source></audio>
+                    : <div></div>
+                  }
+                  <div dangerouslySetInnerHTML={{ __html: transcript }} />
+
+                
+              </div>
+        </div>
+        
+      )
+    }
   }
 }
 

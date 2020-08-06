@@ -38,9 +38,6 @@ class App extends Component{
     componentWillMount() {
       this.setState({isLoading:true})
       console.log("hw!")
-      // this.setState({
-      //     markerData: data
-      // });  
       axios.get("/api/delmadata").then( (response) => {
               var clean_data = []
               response.data.forEach((element,index) =>{
@@ -51,6 +48,10 @@ class App extends Component{
                       latitude:parseFloat(element[keys[3]]),
                       longitude:parseFloat(element[keys[2]]),
                       description:element[keys[4]],
+                      topics:element[keys[5]].split(","),
+                      subjectTags:element[keys[6]].split(","),
+                      compiledTags:element[keys[7]].split(","),
+                      imagePaths:element[keys[10]].split(","),
                   })
 
               })
@@ -67,7 +68,6 @@ class App extends Component{
       } 
 
       else {
-        const markerInfo = this.state.rawData;
         return (
           <div className="appWrapper">
             <Router>

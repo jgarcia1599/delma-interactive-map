@@ -18,9 +18,7 @@ var data = [];
 delete L.Icon.Default.prototype._getIconUrl;
 
 L.Icon.Default.mergeOptions({
-    // iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
-        iconRetinaUrl: require('../images/beach-placeholder.jpg'),
-
+    iconRetinaUrl: require('../images/beach-placeholder.jpg'),
     iconUrl: require('../images/beach-placeholder.jpg'),
     shadowUrl: require('leaflet/dist/images/marker-shadow.png')
 });
@@ -45,8 +43,7 @@ class MapClass extends Component {
     componentWillMount() {
         this.setState({isLoading:true})
         this.updatePredicate();
-        window.addEventListener("resize", this.updatePredicate);
-
+        window.addEventListener("resize", this.updatePredicate); 
         // console.log("hw!")
         this.setState({
             markerData: data
@@ -61,6 +58,14 @@ class MapClass extends Component {
                         latitude:parseFloat(element[keys[3]]),
                         longitude:parseFloat(element[keys[2]]),
                         description:element[keys[4]],
+                        topics:element[keys[5]].split(","),
+                        subjectTags:element[keys[6]].split(","),
+                        compiledTags:element[keys[7]].split(","),
+                        audioPaths:element[keys[9]].split(","),
+                        imagePaths:element[keys[10]].split(","),
+                        transcriptText:element[keys[13]].split(",")
+
+
                     })
 
                 })
