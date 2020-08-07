@@ -5,7 +5,7 @@ const port = 5000
 const path = require('path');
 
 //path to csv file we want to make into json
-const path_to_csv = 'data/delmaFour.csv'
+const path_to_csv = 'data/delmaSix.csv'
 
 // using production build of main react app
 app.use(express.static(path.join(__dirname, '../client/build')));

@@ -35,7 +35,10 @@ class Pages extends Component {
                       compiledTags:element[keys[7]].split(","),
                       audioPaths:element[keys[9]].split(","),
                       imagePaths:element[keys[10]].split(","),
-                      transcriptText:element[keys[13]]
+                      videoPaths:element[keys[11]].split(","),
+                      transcriptTextOne:element[keys[15]],
+                      transcriptTextTwo:element[keys[16]]
+
                   })
 
               })
@@ -53,9 +56,10 @@ class Pages extends Component {
     } 
     else {
       const filteredData = this.state.rawData.filter(entry => entry.id == this.props.match.params.id)
-
+      console.log(filteredData[0].audioPaths.length)
       // var transcript =                     
-      var transcript = filteredData[0].transcriptText;
+      var transcriptOne = filteredData[0].transcriptTextOne;
+      var transcriptTwo = filteredData[0].transcriptTextTwo;
       return (
           <div>
               <Nav isHome={false}/>
@@ -64,7 +68,7 @@ class Pages extends Component {
                 <h1>
                     {filteredData[0].locationName}
                 </h1>
-                {filteredData[0].imagePaths.length > 1
+                {filteredData[0].imagePaths.length >= 1 && filteredData[0].imagePaths[0] != ""
                   ? <img src={require('../images/' + filteredData[0].imagePaths[0])} alt="Place Holder Beach" className="bigImagePage"/> 
                   : <img src={BeachImage} alt="Place Holder Beach" className="bigImagePage"/>
                 }              
@@ -76,28 +80,24 @@ class Pages extends Component {
                     return <div className="one-image-row"><img src={require('../images/' + filteredData[0].imagePaths[1])} alt="Place Holder Beach" /></div>;
                   } else if (filteredData[0].imagePaths.length == 3) {
                     return <div className="two-image-row"><img src={require('../images/' + filteredData[0].imagePaths[1])} alt="Place Holder Beach" /><img src={require('../images/' + filteredData[0].imagePaths[2])} alt="Place Holder Beach" /></div>;
+                  } else if (filteredData[0].imagePaths.length == 4) {
+                    return <div className="three-image-row"><img src={require('../images/' + filteredData[0].imagePaths[1])} alt="Place Holder Beach" /><img src={require('../images/' + filteredData[0].imagePaths[2])} alt="Place Holder Beach" /><img src={require('../images/' + filteredData[0].imagePaths[3])} alt="Place Holder Beach" /></div>;
                   }
                 })()}              
-                {/* {
-                  filteredData[0].imagePaths.length > 1
-                  ?<img src={require('../images/' + filteredData[0].imagePaths[1])} alt="Place Holder Beach" />
-                  :<></>
-                }
-                {
-                  filteredData[0].imagePaths.length > 2
-                  ?<img src={require('../images/' + filteredData[0].imagePaths[2])} alt="Place Holder Beach" />
-                  :<></>
-                } */}
-                {/* <Link to="/" >
-                  <FontAwesomeIcon icon={faArrowCircleLeft} id="arrowLeftIcon"/>
-                </Link> */}
-                  {filteredData[0].imagePaths.length > 1
+                  {filteredData[0].audioPaths.length >= 1 && filteredData[0].audioPaths[0] != ""
                     ? <audio controls className="audio-custom"> <source src={require('../sound/' + filteredData[0].audioPaths[0])} type="audio/mp4"></source></audio>
                     : <div></div>
                   }
-                  <div dangerouslySetInnerHTML={{ __html: transcript }} />
-
-                
+                  <div dangerouslySetInnerHTML={{ __html: transcriptOne }} />
+                  {filteredData[0].audioPaths.length >= 2
+                    ? <audio controls className="audio-custom"> <source src={require('../sound/' + filteredData[0].audioPaths[1])} type="audio/mp4"></source></audio>
+                    : <div></div>
+                  }
+                  <div dangerouslySetInnerHTML={{ __html: transcriptTwo }} />
+                  {filteredData[0].videoPaths.length > 1
+                    ? <div class="video-container"><iframe frameborder="0" src={filteredData[0].videoPaths[0]} frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+                    : <div></div>
+                  }
               </div>
         </div>
         

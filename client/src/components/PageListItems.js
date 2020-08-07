@@ -104,9 +104,12 @@ class PageListItems extends Component {
       if (window.innerWidth > 550) {
         var x = document.getElementsByClassName("dropdownFilter");
         var dimContainer = document.getElementById("dimOverlay");
+        var resultsMobile =document.getElementById("showResultsNumberMobile");
+
         x = x[0];
         x.className = "dropdownFilter";
         dimContainer.style.display = "none";
+        resultsMobile.className = " ";
       }
   }
 

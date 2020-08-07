@@ -7,6 +7,8 @@ import axios from "axios";
 import { Link, BrowserRouter as Router, Route } from "react-router-dom";
 import { Switch } from "react-router-dom";
 import Nav from "./components/Nav"
+import About from "./components/About"
+
 import Page from "./components/Page";
 import PageListPage from "./components/PageListItems";
 
@@ -74,10 +76,13 @@ class App extends Component{
               <Route path="/" exact>
                 <MapClass></MapClass>
               </Route>
-                <Route exact path="/stories">
-                  <PageListPage data={this.state.rawData}></PageListPage>
-                </Route>
-                <Route exact path="/articles/:id" exact component={Page} />
+              <Route path="/about" exact>
+                <About></About>
+              </Route>
+              <Route exact path="/stories">
+                <PageListPage data={this.state.rawData}></PageListPage>
+              </Route>
+              <Route exact path="/articles/:id" exact component={Page} />
             </Router>
           </div>
         );
