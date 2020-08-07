@@ -77,7 +77,7 @@ class Pages extends Component {
                 </p>
                 {(function() {
                   if (filteredData[0].imagePaths.length == 2) {
-                    return <div className="one-image-row"><img src={require('../images/' + filteredData[0].imagePaths[1])} alt="Place Holder Beach" /></div>;
+                    return <div><img src={require('../images/' + filteredData[0].imagePaths[1])} alt="Place Holder Beach"  className="bigImagePage"/></div>;
                   } else if (filteredData[0].imagePaths.length == 3) {
                     return <div className="two-image-row"><img src={require('../images/' + filteredData[0].imagePaths[1])} alt="Place Holder Beach" /><img src={require('../images/' + filteredData[0].imagePaths[2])} alt="Place Holder Beach" /></div>;
                   } else if (filteredData[0].imagePaths.length == 4) {
