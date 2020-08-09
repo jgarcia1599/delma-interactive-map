@@ -63,7 +63,8 @@ class MapClass extends Component {
                         compiledTags:element[keys[7]].split(","),
                         audioPaths:element[keys[9]].split(","),
                         imagePaths:element[keys[10]].split(","),
-                        transcriptText:element[keys[13]].split(",")
+                        videoPaths:element[keys[11]],
+                        transcriptText:element[keys[15]].split(",")
 
 
                     })

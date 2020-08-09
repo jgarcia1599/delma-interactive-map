@@ -21,10 +21,12 @@ nav {
     position: absolute;
     top:0;
     color: #f2f2f2;
+    pointer-events: none;
   }
 
   .transparentNav a{
     color: #f2f2f2;
+    pointer-events: all;
   }
   .opaqueNav {
     position: relative;
@@ -129,7 +131,7 @@ nav {
   height: 100%;
   left: 0;
   padding: 6em 7% 5em;
-  /* pointer-events: none; */
+  pointer-events: none;
   position: absolute;
   top: 0;
   width: 50%;
@@ -191,10 +193,40 @@ nav {
   text-align: center;
 }
 
+#aboutPageContentWrapper {
+  margin: auto 25% auto 25%;
+  text-align: center;
+}
+#aboutPageContentWrapper h1 {
+  font-size: 40px;
+  font-weight: 400;
+  text-align:left;
+}
+
+#aboutPageContentWrapper h2 {
+  font-size: 30px;
+  font-weight: 300;
+  text-align:left;
+}
+
+#aboutPageContentWrapper .paragraphsAbout {
+  text-align: left;
+}
+
+#aboutPageContentWrapper p {
+  font-family: "Open Sans";
+}
+
 #pageContentWrapper h1 {
   font-size: 40px;
   font-weight: 400;
-  float:left;
+  text-align:left;
+}
+
+#pageContentWrapper h2 {
+  font-size: 30px;
+  font-weight: 300;
+  text-align:left;
 }
 
 #pageContentWrapper p {
@@ -461,6 +493,21 @@ a {
   padding-bottom: 40px;
 
 }
+.three-image-row {
+  display:flex;
+  flex-direction: row;
+  padding-bottom: 40px;
+}
+.three-image-row img {
+  padding: 5px;
+  max-width: 32% !important;
+  height: auto; /* default */
+}
+
+.bigImagePage {
+  width: 100%;
+  height: auto;
+}
 
 .bigImagePage {
   width: 100%;
@@ -500,7 +547,6 @@ a {
   font-weight: 800;
   text-align: left !important;
   margin-bottom: 5px;
-
 }
 
 .answerTranscript {
@@ -508,8 +554,30 @@ a {
   font-weight: 400;
   text-align: left !important;
   margin-bottom: 40px;
-
 }
+
+.video-container {
+  overflow: hidden;
+  position: relative;
+  width:100%;
+}
+
+.video-container::after {
+  padding-top: 56.25%;
+  display: block;
+  content: '';
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+
+
 @media screen and (max-width: 1200px) {
   #articlesDivCenterGrid #articleCardsWrapper .articleCard p{
     font-size: 14px;
@@ -520,7 +588,9 @@ a {
   #mapContentLeft {
     width: 70%;
   }
-
+  #aboutPageContentWrapper {
+    margin: auto 20% auto 20%;
+  }
 }
 
 
@@ -528,6 +598,9 @@ a {
 @media screen and (max-width: 768px) {
   #articlesDivCenterGrid #articleCardsWrapper .articleCard p{
     font-size: 15px;
+  }
+  #aboutPageContentWrapper {
+    margin: auto 10% auto 10%;
   }
   #articlesDivCenterGrid #articleCardsWrapper {
     display: grid;
@@ -558,6 +631,10 @@ a {
   .dropdownFilter label:hover {
     /* background-color: red; */
 
+  }
+  #aboutPageContentWrapper {
+    margin: auto 5% auto 5%;
+    text-align: center;
   }
   #closeModalFilter {
     display: block;
@@ -603,6 +680,8 @@ a {
     display:none;
     width: 100%;
     background-color: #666666be;
+    pointer-events: all;
+
   }
 
   #mapContentLeft p{
@@ -655,8 +734,14 @@ a {
     }
     
     .two-image-row img {
-      /* width: 50% !important; */
-      /* padding: 2%; */
+      padding: 0 0 3% 0;
+      max-width: 100% !important;
+      height: auto; /* default */
+    }
+    .three-image-row {
+      flex-direction: column;
+    }    
+    .three-image-row img {
       padding: 0 0 3% 0;
       max-width: 100% !important;
       height: auto; /* default */
