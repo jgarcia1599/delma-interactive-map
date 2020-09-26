@@ -409,6 +409,7 @@ a {
   text-align: center;
   font-size: 60px;
   margin-bottom: 25px;
+  line-height: 58px;
 }
 
 .dropdownFilter h2 {
@@ -578,13 +579,67 @@ a {
   z-index: 10;
   position: absolute;
   bottom: 20px;
-  right: 36px;
+  right: 22px;
+  pointer-events: none;
 }
 
-@media screen and (max-width: 1200px) {
-  #articlesDivCenterGrid #articleCardsWrapper .articleCard p {
-    font-size: 14px;
-  }
+.rbt {
+  width: 90%;
+  margin: auto 5% auto 5%;
+}
+
+.rbt-input-multi.form-control {
+  height: auto;
+}
+.form-control {
+  display: block;
+  width: 100%;
+  height: calc(1.5em + 0.75rem + 2px);
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.rbt-input-multi {
+  cursor: text;
+  overflow: hidden;
+  position: relative;
+}
+.rbt-input-multi .rbt-input-wrapper {
+  align-items: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: -4px;
+  margin-top: -1px;
+  overflow: hidden;
+}
+.dropdown-menu.show {
+  display: block;
+}
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  display: none;
+  float: left;
+  min-width: 10rem;
+  padding: 0.5rem 0;
+  margin: 0.125rem 0 0;
+  font-size: 1rem;
+  color: #212529;
+  text-align: left;
+  list-style: none;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 0.25rem;
 }
 
 @media screen and (max-width: 1000px) {
@@ -648,6 +703,16 @@ a {
     border-radius: 15px;
     width: 200px;
     height: 50px;
+    padding: 0.35em 1.2em;
+    border: 0.1em solid #423939;
+    background-color: #423939;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    color: #ffffff;
+    text-align: center;
+    transition: all 0.2s;
   }
 
   #searchBarContainer {
@@ -682,8 +747,26 @@ a {
   #mapContentLeft {
     display: none;
     width: 100%;
-    background-color: #666666be;
+    background-color: #666666d6;
     pointer-events: all;
+    padding: 13%;
+  }
+
+  #mapContentLeft h1 {
+    margin-top: 40px;
+    margin-bottom: 5px;
+  }
+
+  #mapContentLeft p {
+    margin-top: 10px;
+  }
+
+  #dhakiraLogo {
+    display: none;
+  }
+
+  #mapContentLegend h6 {
+    margin-top: 0px;
   }
 
   #infoCircleBottomLeft {
@@ -697,7 +780,7 @@ a {
 
   #infoCloseTopLeft {
     position: absolute;
-    top: 100px;
+    top: 40px;
     left: 7%;
     font-size: 25px;
     display: block;
@@ -744,5 +827,14 @@ a {
     padding: 0 0 3% 0;
     max-width: 100% !important;
     height: auto; /* default */
+  }
+}
+
+@media screen and (max-width: 400px) {
+  #mapContentLeft h1 {
+    font-size: 2.3em;
+  }
+  #mapContentLeft p {
+    font-size: 0.9em;
   }
 }
