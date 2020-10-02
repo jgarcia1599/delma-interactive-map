@@ -230,6 +230,7 @@ class PageListItems extends Component {
     // console.log(document.getElementById(event.target.id).checked)
     let detectTag = async () => {
       console.log("first");
+
       if (tagType == "locations") {
         self.setState({
           chosenLocations: event
@@ -244,35 +245,37 @@ class PageListItems extends Component {
         });
       }
     };
-    // if (document.getElementById(event.target.id).checked == true) {
     let changeTags = async () => {
-      console.log("second");
+      setTimeout(function() {
+        newTagsArray = self.state.chosenLocations
+          .concat(self.state.chosenSubjects)
+          .concat(self.state.chosenTopics);
 
-      newTagsArray = this.state.chosenLocations
-        .concat(this.state.chosenSubjects)
-        .concat(this.state.chosenTopics);
-      // if (this.state.checkedSubjectTags.includes(event[0])) {
-      //   newTagsArray = newTagsArray.filter(tag => tag !== event[0]);
-      // }
-    };
-    let updatedRenders = async () => {
-      let tempArrayOne = [];
-      if (newTagsArray.length != 0) {
-        newTagsArray.map(checkedSubjectTag => {
-          self.props.data.forEach(element => {
-            if (element.compiledTags.includes(checkedSubjectTag)) {
-              tempArrayOne.push(element);
-            }
+        let tempArrayOne = [];
+        console.log("third");
+
+        if (newTagsArray.length != 0) {
+          newTagsArray.map(checkedSubjectTag => {
+            self.props.data.forEach(element => {
+              if (element.compiledTags.includes(checkedSubjectTag)) {
+                tempArrayOne.push(element);
+              }
+            });
           });
+        } else {
+          tempArrayOne = self.props.data;
+        }
+        //Combine arrays
+        let uniqueChars = [...new Set(tempArrayOne)];
+
+        self.setState({
+          checkedSubjectTags: newTagsArray,
+          locationData: uniqueChars
         });
-      }
-      //Combine arrays
-      let uniqueChars = [...new Set(tempArrayOne)];
-      self.setState({
-        checkedSubjectTags: newTagsArray,
-        locationData: uniqueChars
-      });
+      }, 200);
     };
+
+    let updatedRenders = async () => {};
     detectTag()
       .then(changeTags())
       .then(updatedRenders())

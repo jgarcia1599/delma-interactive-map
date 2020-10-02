@@ -24,7 +24,8 @@ L.Icon.Default.mergeOptions({
   shadowUrl: require("leaflet/dist/images/marker-shadow.png")
 });
 
-var myIcon = L.divIcon({ className: "leaflet-div-red" });
+var redIcon = L.divIcon({ className: "leaflet-div-red" });
+var blueIcon = L.divIcon({ className: "leaflet-div-blue" });
 
 class MapClass extends Component {
   constructor(props) {
@@ -105,9 +106,7 @@ class MapClass extends Component {
     console.log(contentLeft);
   }
 
-  panMarker(object) {
-    console.log("ho!");
-  }
+  panMarker(object) {}
 
   render() {
     if (this.state.data_received == false) {
@@ -116,7 +115,7 @@ class MapClass extends Component {
       const markerInfo = this.state.rawData;
       data = this.state.rawData;
       const position = [24.482, 52.28];
-
+      console.log(markerInfo);
       return (
         <div>
           <Nav isHome={true} />
@@ -141,14 +140,14 @@ class MapClass extends Component {
             <br></br>
             <hr></hr>
             <div id="mapContentLegend">
-              <h6>LEGEND</h6>
+              <h6>Legend:</h6>
               <div class="flex-row-two-columns-legend">
                 <div className="leaflet-div-red"></div>
                 <div>Media Available</div>
               </div>
               <div class="flex-row-two-columns-legend">
                 <div className="leaflet-div-blue"></div>
-                <div>Media Available</div>
+                <div>Media Unavailable</div>
               </div>
             </div>
           </div>
@@ -168,12 +167,17 @@ class MapClass extends Component {
               attribution="attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community"
               url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
               minZoom={12}
+              maxZoom={17}
             />
             {markerInfo.map(datapoint => (
               <Marker
                 position={[datapoint.longitude, datapoint.latitude]}
                 key={datapoint.id}
-                icon={myIcon}
+                icon={
+                  datapoint.audioPaths[0] != "" || datapoint.imagePaths[0] != ""
+                    ? redIcon
+                    : blueIcon
+                }
                 onClick={this.panMarker(this)}
               >
                 <Popup>
