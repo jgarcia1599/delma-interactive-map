@@ -10,7 +10,6 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import CardGroup from "react-bootstrap/CardGroup";
 import Card from "react-bootstrap/Card";
-
 import { render } from "react-dom";
 import { FormGroup, FormControl as Control } from "react-bootstrap";
 import "react-bootstrap-typeahead/css/Typeahead.css";
