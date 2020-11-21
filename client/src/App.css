@@ -4,6 +4,40 @@
     padding:20px; */
 }
 
+@font-face {
+  font-family: "RobotoBlack";
+  src: local("MyFont"), url(./fonts/Roboto-Black.ttf) format("woff");
+}
+@font-face {
+  font-family: "RobotoBold";
+  src: local("MyFont"), url(./fonts/Roboto-Bold.ttf) format("woff");
+}
+@font-face {
+  font-family: "RobotoLight";
+  src: local("MyFont"), url(./fonts/Roboto-Light.ttf) format("woff");
+}
+@font-face {
+  font-family: "RobotoMedium";
+  src: local("MyFont"), url(./fonts/Roboto-Medium.ttf) format("woff");
+}
+@font-face {
+  font-family: "RobotoRegular";
+  src: local("MyFont"), url(./fonts/Roboto-Regular.ttf) format("woff");
+}
+@font-face {
+  font-family: "RobotoThin";
+  src: local("MyFont"), url(./fonts/Roboto-Thin.ttf) format("woff");
+}
+@font-face {
+  font-family: "RobotoCondensedRegular";
+  src: local("MyFont"), url(./fonts/RobotoCondensed-Regular.ttf) format("woff");
+}
+
+@font-face {
+  font-family: "RobotoCondensedBold";
+  src: local("MyFont"), url(./fonts/RobotoCondensed-Bold.ttf) format("woff");
+}
+
 #leafletMap {
   height: 100vh;
   z-index: 1;
@@ -37,13 +71,13 @@ nav {
 }
 
 nav a {
-  font-family: "Open Sans";
+  font-family: "RobotoCondensedRegular";
   float: right;
   display: block;
   text-align: center;
   margin: 40px 7%;
   text-decoration: none;
-  font-size: 19px;
+  font-size: 22px;
   opacity: 1;
 }
 
@@ -132,6 +166,7 @@ nav .icon {
   width: 50%;
   z-index: 10;
   color: white;
+  font-family: "RobotoCondensedRegular";
   background: linear-gradient(to right, rgba(96, 163, 218, 0.2), transparent);
 }
 
@@ -139,10 +174,10 @@ nav .icon {
   font-weight: 700;
   font-size: 3em;
 
-  font-family: "Futura";
+  font-family: "RobotoRegular";
 }
 #mapContentLeft p {
-  font-weight: 400;
+  font-weight: 500;
   font-size: 1em;
   font-family: "Open Sans";
 }
@@ -182,7 +217,7 @@ nav .icon {
 }
 
 #pageContentWrapper {
-  margin: auto 15% auto 15%;
+  margin: auto 21% auto 21%;
   text-align: center;
 }
 
@@ -191,7 +226,7 @@ nav .icon {
   text-align: center;
 }
 #aboutPageContentWrapper h1 {
-  font-size: 40px;
+  font-size: 62px;
   font-weight: 400;
   text-align: left;
 }
@@ -200,6 +235,7 @@ nav .icon {
   font-size: 30px;
   font-weight: 300;
   text-align: left;
+  font-family: "RobotoRegular";
 }
 
 #aboutPageContentWrapper .paragraphsAbout {
@@ -207,13 +243,15 @@ nav .icon {
 }
 
 #aboutPageContentWrapper p {
-  font-family: "Open Sans";
+  font-family: "RobotoLight";
 }
 
 #pageContentWrapper h1 {
-  font-size: 40px;
+  font-size: 52px;
+  font-family: "RobotoCondensedRegular";
   font-weight: 400;
-  text-align: left;
+  text-align: center;
+  line-height: 1em;
 }
 
 #pageContentWrapper h2 {
@@ -223,7 +261,9 @@ nav .icon {
 }
 
 #pageContentWrapper p {
-  font-family: "Open Sans";
+  font-family: "RobotoRegular";
+  margin-top: 0px;
+  text-align: left;
 }
 
 #arrowLeftIcon {
@@ -268,8 +308,8 @@ nav .icon {
 
 #mapContentLegend h6 {
   margin-bottom: 15px;
-  font-weight: 800;
-  font-size: 20px;
+  font-weight: 900;
+  font-size: 24px;
 }
 .flex-row-two-columns-legend {
   display: flex;
@@ -277,12 +317,17 @@ nav .icon {
   margin-bottom: 15px;
 }
 
+.flex-row-two-columns-legend .mediaAvailability {
+  font-family: "RobotoCondensedRegular";
+  font-size: 18px;
+}
+
 /* grid for articles page, search bar, filters, cards. */
 #articlesDivCenterGrid {
   /* display: grid; */
   display: -moz-grid;
-  width: 90%;
-  margin: auto 5% auto 5%;
+  width: 64%;
+  margin: auto 18% auto 18%;
   grid-template-columns: 20% 80%;
 }
 
@@ -336,20 +381,20 @@ nav .icon {
   cursor: pointer;
 }
 #articlesDivCenterGrid #articleCardsWrapper .articleCard h1 {
-  font-family: "Open Sans";
+  font-family: "RobotoCondensedRegular";
   font-weight: 800;
   color: black;
   text-decoration: none;
   margin-bottom: 10px;
-  font-size: 22px;
+  font-size: 26px;
 }
 
 #articlesDivCenterGrid #articleCardsWrapper .articleCard p {
   font-family: "Open Sans";
   font-weight: 500;
-  font-size: 16px;
+  font-size: 17px;
   margin: auto 7% auto 7%;
-  color: black;
+  color: #000;
   text-decoration: none;
 }
 
@@ -411,9 +456,10 @@ a {
 
 #storiesTitle {
   text-align: center;
-  font-size: 65px;
-  margin-bottom: 20px;
+  font-size: 58px;
+  margin-bottom: 32px;
   line-height: 58px;
+  font-family: "RobotoCondensedRegular";
 }
 
 .dropdownFilter h2 {
@@ -588,8 +634,8 @@ a {
 }
 
 .rbt {
-  width: 85%;
-  margin: auto 7.5% auto 7.5%;
+  width: 62.5%;
+  margin: auto 18% auto 18%;
   margin-bottom: 10px;
 }
 
@@ -720,12 +766,19 @@ button {
   position: absolute;
   display: block;
   max-height: 300px;
-  overflow: auto;
   will-change: transform;
   width: 349.188px;
   top: 0px;
   left: 0px;
   transform: translate3d(0px, 38px, 0px);
+}
+.dropdown-menu.show {
+  overflow-y: auto;
+  overflow-x: hidden !important;
+}
+
+.rbt-input-main {
+  font-size: 16px;
 }
 
 .rbt-menu > .dropdown-item {
@@ -746,6 +799,16 @@ button {
   border: 0;
 }
 @media screen and (max-width: 1000px) {
+  #articlesDivCenterGrid {
+    width: 88%;
+    margin: auto 6% auto 6%;
+  }
+  .rbt {
+    width: 80%;
+    margin: auto 7.5% auto 7.5%;
+    margin-bottom: 10px;
+  }
+
   #mapContentLeft {
     width: 70%;
   }
@@ -762,6 +825,7 @@ button {
   #articlesDivCenterGrid #articleCardsWrapper .articleCard p {
     font-size: 15px;
   }
+
   #aboutPageContentWrapper {
     margin: auto 10% auto 10%;
   }
@@ -939,5 +1003,102 @@ button {
   }
   #mapContentLeft p {
     font-size: 0.9em;
+  }
+}
+@media (max-height: 800px) {
+  footer {
+    position: static;
+  }
+  header {
+    padding-top: 40px;
+  }
+}
+
+.footer-distributed {
+  background-color: #292c2f;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+  box-sizing: border-box;
+  width: 100%;
+  padding: 200px;
+  text-align: left;
+  font-family: "Open Sans";
+  padding: 60px 15%;
+  margin-top: 80px;
+}
+
+.footer-distributed .footer-left p {
+  color: #8f9296;
+  font-size: 14px;
+  margin: 0;
+}
+
+/* Footer links */
+.footer-distributed p.boldHeader {
+  font-size: 22px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 15px;
+  font-family: "Futura";
+}
+.footer-distributed p.footer-links {
+  font-size: 16px;
+  font-weight: 400;
+  color: #d1d1d1;
+  margin: 0 0 10px;
+  padding: 0;
+}
+
+.footer-distributed p.footer-links a {
+  display: inline-block;
+  line-height: 1.8;
+  text-decoration: none;
+  color: inherit;
+}
+
+.footer-distributed .footer-right {
+  float: right;
+  margin-top: 88px;
+  max-width: 180px;
+}
+
+.footer-distributed .footer-right a {
+  display: inline-block;
+  width: 45px;
+  height: 45px;
+  background-color: #33383b;
+  border-radius: 2px;
+
+  font-size: 25px;
+  color: #ffffff;
+  text-align: center;
+  line-height: 45px;
+
+  margin-left: 3px;
+}
+
+/* If you don't want the footer to be responsive, remove these media queries */
+
+@media (max-width: 1100px) {
+  .footer-distributed {
+    padding: 60px 120px;
+  }
+}
+
+@media (max-width: 800px) {
+  .footer-distributed {
+    padding: 60px 80px;
+  }
+  .footer-distributed .footer-left,
+  .footer-distributed .footer-right {
+    text-align: center;
+  }
+
+  .footer-distributed .footer-right {
+    float: none;
+    margin: 0 auto 20px;
+  }
+
+  .footer-distributed .footer-left p.footer-links {
+    line-height: 1.8;
   }
 }

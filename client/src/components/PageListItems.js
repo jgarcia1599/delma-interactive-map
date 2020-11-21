@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link, BrowserRouter as Router, Route } from "react-router-dom";
 import Nav from "./Nav";
+import Footer from "./Footer";
 import BeachImage from "../images/beach-placeholder.jpg";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
@@ -428,6 +429,7 @@ class PageListItems extends Component {
             <div>View {this.state.locationData.length} Results</div>
           </button>
         </div>
+        <Footer></Footer>
       </>
     );
   }

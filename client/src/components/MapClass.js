@@ -143,11 +143,11 @@ class MapClass extends Component {
               <h6>Legend:</h6>
               <div class="flex-row-two-columns-legend">
                 <div className="leaflet-div-red"></div>
-                <div>Media Available</div>
+                <div className="mediaAvailability">Media Available</div>
               </div>
               <div class="flex-row-two-columns-legend">
                 <div className="leaflet-div-blue"></div>
-                <div>Media Unavailable</div>
+                <div className="mediaAvailability">Media Unavailable</div>
               </div>
             </div>
           </div>
