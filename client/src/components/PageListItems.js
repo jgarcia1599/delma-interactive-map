@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link, BrowserRouter as Router, Route } from "react-router-dom";
 import Nav from "./Nav";
+import Footer from "./Footer";
 import BeachImage from "../images/beach-placeholder.jpg";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
@@ -10,7 +11,6 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import CardGroup from "react-bootstrap/CardGroup";
 import Card from "react-bootstrap/Card";
-
 import { render } from "react-dom";
 import { FormGroup, FormControl as Control } from "react-bootstrap";
 import "react-bootstrap-typeahead/css/Typeahead.css";
@@ -429,6 +429,7 @@ class PageListItems extends Component {
             <div>View {this.state.locationData.length} Results</div>
           </button>
         </div>
+        <Footer></Footer>
       </>
     );
   }
