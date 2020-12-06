@@ -8,6 +8,11 @@
   font-family: "RobotoBlack";
   src: local("MyFont"), url(./fonts/Roboto-Black.ttf) format("woff");
 }
+
+@font-face {
+  font-family: "Open Sans";
+  src: local("MyFont"), url(./fonts/OpenSansRegular.ttf) format("woff");
+}
 @font-face {
   font-family: "RobotoBold";
   src: local("MyFont"), url(./fonts/Roboto-Bold.ttf) format("woff");
