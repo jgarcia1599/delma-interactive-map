@@ -127,15 +127,30 @@ class MapClass extends Component {
             />
             <h1>Delma Island</h1>
             <p>
-              Dalma (IATA: ZDY) is an Emirati island located in the Persian Gulf
-              approximately 42 kilometres (26 mi) off the coast of Abu Dhabi and
-              116 kilometres (72 mi) from Doha. The Abu Dhabi Islands
-              Archaeological Survey ADIAS carried out an initial archaeological
-              survey of Dalma island in 1992. A total of more than 20
-              archaeological sites were identified on the island, ranging in
-              time from the Neolithic (Late Stone Age). The population consists
-              of around 4,811 inhabitants, most of whom are Qatari who have been
-              granted United Arab Emirates (UAE) nationality.
+              Along the Arabian and Indian Ocean trade routes, one hundred years
+              ago, tiny Delma Island offered something more valuable than
+              anything bartered and sold: fresh water wells. Its name is
+              believed to have derived from the Arabic word for “bucket of
+              water,” and along with Bahrain became a vital stop for ships, as
+              the rare place to find fresh water in the Gulf. This would lead
+              Delma in the 19th and early 20th century to become a hub for the
+              pearl trade, with ships from throughout the region coming to
+              negotiate prices at the Al Mehairi House, now the Delma Museum.
+              <br></br>
+              <br></br>The purpose of NYU Abu Dhabi’s Dhakira Center for
+              Heritage Studies’ is to chronicle the life and memories of Delma
+              Island after the collapse of the pearl industry in the 1930s. This
+              is not a historical record but rather the preservation of heritage
+              and memories in the age of modernity. We have done this through
+              collecting personal stories, photos and videos, starting from when
+              the island’s population became to disappear to the 1970s when
+              Sheikh Zayed bin Sultan Al Nahyan, the father of the UAE, began
+              efforts to repopulate the island to today, when its population is
+              once again diminishing to less than 3,000 people as people move to
+              Abu Dhabi for better job opportunities. These interviews include
+              Emiratis and expats who have made this quiet fishing island their
+              home. Most of the interviews were done by our resident researcher,
+              whose family has been part of Delma Island for four generations.
             </p>
             <br></br>
             <hr></hr>
