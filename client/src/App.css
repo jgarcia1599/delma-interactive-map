@@ -183,7 +183,7 @@ nav .icon {
 }
 #mapContentLeft p {
   font-weight: 500;
-  font-size: 1em;
+  font-size: 14px;
   font-family: "Open Sans";
 }
 #mapContentLeft h6 {
@@ -231,7 +231,7 @@ nav .icon {
   text-align: center;
 }
 #aboutPageContentWrapper h1 {
-  font-size: 62px;
+  font-size: 50px;
   font-weight: 400;
   text-align: left;
 }
@@ -312,7 +312,8 @@ nav .icon {
 }
 
 #mapContentLegend h6 {
-  margin-bottom: 15px;
+  margin-top: 0px;
+  margin-bottom: 10px;
   font-weight: 900;
   font-size: 24px;
 }
@@ -577,10 +578,17 @@ a {
 }
 
 .interviewHeader {
-  font-size: 40px;
+  font-size: 32px;
   text-align: center;
   font-weight: 800;
-  margin-bottom: 6px;
+  margin-bottom: 34px;
+}
+
+.subHeaderInterview {
+  font-size: 26px;
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 16px;
 }
 
 .interviewOtherInfo {
@@ -589,6 +597,13 @@ a {
   color: rgb(80, 80, 80);
   text-align: left !important;
   margin-bottom: 40px;
+}
+
+.interviewOtherInfoNoMarginBottom {
+  font-size: 18px;
+  font-weight: 100;
+  color: rgb(80, 80, 80);
+  text-align: left !important;
 }
 
 .questionTranscript {
@@ -1106,4 +1121,9 @@ button {
   .footer-distributed .footer-left p.footer-links {
     line-height: 1.8;
   }
+}
+
+.blockQuote {
+  margin-left: 35px;
+  text-align: left;
 }
